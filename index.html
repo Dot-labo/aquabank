@@ -341,6 +341,34 @@
 
     /* ============ COMPARISON ============ */
     .comparison { background: var(--gray); }
+    .comparison-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .comparison-header .section-title { margin-bottom: 0; }
+    .comparison-point {
+      flex-shrink: 0;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .comparison-point img { height: 100px; width: auto; object-fit: contain; }
+
+    /* CSS fallback balloon */
+    .point-balloon {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .point-hand { font-size: 3.5rem; line-height: 1; transform: scaleX(-1); }
+    .point-label {
+      background: #3cba54; color: #fff;
+      font-size: 1.4rem; font-weight: 900; font-style: italic;
+      padding: 8px 20px; border-radius: 50px;
+      position: relative; box-shadow: 0 4px 12px rgba(60,186,84,.35);
+      letter-spacing: .04em;
+    }
+    .point-label::before {
+      content: "";
+      position: absolute; left: -12px; top: 50%; transform: translateY(-50%);
+      border: 8px solid transparent;
+      border-right-color: #3cba54;
+    }
+
     .comparison-table { width: 100%; border-collapse: collapse; margin-top: 48px; font-size: .88rem; }
     .comparison-table th, .comparison-table td { padding: 14px 18px; text-align: center; border-bottom: 1px solid #e0e0e0; }
     .comparison-table thead th { background: var(--blue-deep); color: #fff; font-weight: 700; }
@@ -774,8 +802,19 @@
 <section class="comparison">
   <div class="section-inner">
     <div class="section-label">Comparison</div>
-    <h2 class="section-title">従来型との<em>徹底比較</em></h2>
-    <p class="section-desc">宅配型ウォーターサーバーとの違いを一覧でご確認ください。</p>
+    <div class="comparison-header">
+      <div>
+        <h2 class="section-title">従来型との<em>徹底比較</em></h2>
+        <p class="section-desc">宅配型ウォーターサーバーとの違いを一覧でご確認ください。</p>
+      </div>
+      <div class="comparison-point">
+        <img src="img/yubi_point_illust.png" alt="Point!" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="point-balloon" style="display:none;">
+          <span class="point-hand">👍</span>
+          <span class="point-label">Point!</span>
+        </div>
+      </div>
+    </div>
     <div style="overflow-x:auto; margin-top:0;">
       <table class="comparison-table">
         <thead>
