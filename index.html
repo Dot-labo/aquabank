@@ -119,17 +119,33 @@
     .water-types { background: var(--white); }
     .water-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
     .water-card {
-      border-radius: 20px; padding: 36px 28px; text-align: center;
-      transition: transform .25s;
+      border-radius: 20px; text-align: center;
+      transition: transform .3s, box-shadow .3s;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
     }
-    .water-card:hover { transform: translateY(-4px); }
-    .water-card.hydrogen { background: linear-gradient(145deg, #e6f7ff, #cce8ff); border: 2px solid #99d6ff; }
-    .water-card.silica   { background: linear-gradient(145deg, #e8f5e9, #c8e6c9); border: 2px solid #a5d6a7; }
-    .water-card.vanadium { background: linear-gradient(145deg, #fce4ec, #f8bbd0); border: 2px solid #f48fb1; }
-    .water-card .wtype-icon { font-size: 3rem; margin-bottom: 12px; }
-    .water-card .wtype-name { font-size: 1.2rem; font-weight: 900; margin-bottom: 8px; color: var(--blue-deep); }
-    .water-card .wtype-desc { font-size: .88rem; color: #444; line-height: 1.7; }
-    .water-card .wtype-tag { display: inline-block; margin-top: 14px; font-size: .78rem; font-weight: 700; border-radius: 20px; padding: 4px 14px; }
+    .water-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.13); }
+    .water-card.hydrogen { background: linear-gradient(160deg, #dceeff, #c5e2ff); border: 2px solid #99cbff; }
+    .water-card.silica   { background: linear-gradient(160deg, #e2f0e2, #cce5cc); border: 2px solid #a8d5a8; }
+    .water-card.vanadium { background: linear-gradient(160deg, #fce8ee, #f9d0dc); border: 2px solid #f4a0b8; }
+
+    /* disk image area */
+    .water-disk {
+      position: relative; display: flex; justify-content: center; align-items: flex-end;
+      height: 160px; padding-top: 20px;
+    }
+    .water-disk img {
+      height: 140px; width: auto; object-fit: contain;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,.18));
+      transition: transform .4s ease;
+    }
+    .water-card:hover .water-disk img { transform: translateY(-8px) scale(1.05); }
+
+    .water-body { padding: 24px 28px 32px; }
+    .water-card .wtype-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+    .water-card .wtype-name { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; color: var(--blue-deep); }
+    .water-card .wtype-desc { font-size: .88rem; color: #444; line-height: 1.8; }
+    .water-card .wtype-tag { display: inline-block; margin-top: 16px; font-size: .8rem; font-weight: 700; border-radius: 20px; padding: 6px 18px; }
     .hydrogen .wtype-tag { background: var(--blue-mid); color: #fff; }
     .silica .wtype-tag   { background: #2e7d32; color: #fff; }
     .vanadium .wtype-tag { background: #c2185b; color: #fff; }
@@ -541,30 +557,43 @@
     <p class="section-desc">専用の「ドーレディスク」を交換するだけで、好みの水質に切り替え可能。自分に合った健康水を毎日飲み続けましょう。</p>
     <div class="water-grid">
       <div class="water-card hydrogen">
-        <div class="wtype-icon">⚡</div>
-        <div class="wtype-name">水素水</div>
-        <div class="wtype-desc">
-          活性酸素を除去するといわれる水素を豊富に含有。<br>
-          6時間後も91%の水素溶存率を維持する高い保持力が特徴です。
+        <div class="water-disk">
+          <img src="img/水素.png" alt="水素ディスク（ドーレディスク）">
         </div>
-        <div class="wtype-tag">アンチエイジング志向に</div>
+        <div class="water-body">
+          <span class="wtype-icon">⚡</span>
+          <div class="wtype-name">水素水</div>
+          <div class="wtype-desc">
+            活性酸素を除去するといわれる水素を豊富に含有。6時間後も91%の水素溶存率を維持する高い保持力が特徴です。
+          </div>
+          <div class="wtype-tag">アンチエイジング志向に</div>
+        </div>
       </div>
       <div class="water-card silica">
-        <div class="wtype-icon">💎</div>
-        <div class="wtype-name">シリカ水</div>
-        <div class="wtype-desc">
-          美肌・髪・爪のもとといわれるシリカ（ケイ素）を溶け込ませた水。<br>
-          美容意識の高い方や女性に人気の水質です。
+        <div class="water-disk">
+          <img src="img/シリカ.png" alt="シリカディスク（ドーレディスク）">
         </div>
-        <div class="wtype-tag">美容・美肌ケアに</div>
+        <div class="water-body">
+          <span class="wtype-icon">💎</span>
+          <div class="wtype-name">シリカ水</div>
+          <div class="wtype-desc">
+            美肌・髪・爪のもとといわれるシリカ（ケイ素）を溶け込ませた水。美容意識の高い方や女性に人気の水質です。
+          </div>
+          <div class="wtype-tag">美容・美肌ケアに</div>
+        </div>
       </div>
       <div class="water-card vanadium">
-        <div class="wtype-icon">🌋</div>
-        <div class="wtype-name">バナジウム水</div>
-        <div class="wtype-desc">
-          希少なミネラル「バナジウム」を含む水。体内の糖代謝をサポートするとされ、健康管理に取り組む方に注目されています。
+        <div class="water-disk">
+          <img src="img/バナジウム.png" alt="バナジウムディスク（ドーレディスク）">
         </div>
-        <div class="wtype-tag">健康管理・ダイエットに</div>
+        <div class="water-body">
+          <span class="wtype-icon">🌋</span>
+          <div class="wtype-name">バナジウム水</div>
+          <div class="wtype-desc">
+            希少なミネラル「バナジウム」を含む水。体内の糖代謝をサポートするとされ、健康管理に取り組む方に注目されています。
+          </div>
+          <div class="wtype-tag">健康管理・ダイエットに</div>
+        </div>
       </div>
     </div>
     <p class="water-select-note">
