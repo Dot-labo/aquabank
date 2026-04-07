@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクアバンク公式代理店｜水道水から作るミネラル水素水サーバー</title>
+  <meta name="description" content="水道水をそのまま使う次世代ウォーターサーバー。月額定額で飲み放題。ボトル不要・年1回無料メンテナンス付き。ロングタイプ・ショートタイプから選べます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-deep: #003d7a;
+      --blue-mid:  #0066cc;
+      --blue-light:#e6f2ff;
+      --teal:      #00a0c6;
+      --accent:    #ff6b00;
+      --text:      #1a1a2e;
+      --gray:      #f5f7fa;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); line-height: 1.7; }
+
+    /* ============ HEADER ============ */
+    .site-header {
+      position: sticky; top: 0; z-index: 999;
+      background: var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,.1);
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .site-header .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .site-header .logo img { height: 40px; }
+    .site-header .logo-text { font-size: 1.1rem; font-weight: 900; color: var(--blue-deep); line-height: 1.2; }
+    .site-header .logo-text span { font-size: .7rem; font-weight: 500; display: block; color: var(--teal); }
+    .header-tel { text-align: right; line-height: 1.3; }
+    .header-tel small { font-size: .7rem; color: #666; }
+    .header-tel a { font-size: 1.4rem; font-weight: 900; color: var(--blue-deep); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .header-tel a::before { content: "📞"; font-size: 1rem; }
+    .header-cta { background: var(--accent); color: #fff; border: none; border-radius: 30px; padding: 10px 22px; font-size: .9rem; font-weight: 700; cursor: pointer; text-decoration: none; white-space: nowrap; transition: opacity .2s; }
+    .header-cta:hover { opacity: .85; }
+
+    /* ============ HERO ============ */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-deep) 0%, #005599 50%, var(--teal) 100%);
+      color: #fff; text-align: center;
+      padding: 80px 24px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url('https://www.aqua-bank.co.jp/wordpress/wp-content/themes/storefront-child/images/waterserver/aqabank_room.jpg') center/cover no-repeat;
+      opacity: .12;
+    }
+    .hero-inner { position: relative; max-width: 900px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-size: .8rem; font-weight: 700; border-radius: 20px;
+      padding: 4px 18px; margin-bottom: 20px; letter-spacing: .05em;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; line-height: 1.35; margin-bottom: 16px; }
+    .hero h1 em { font-style: normal; color: #7ee8ff; }
+    .hero .hero-sub { font-size: clamp(.95rem, 2.5vw, 1.2rem); opacity: .9; margin-bottom: 36px; }
+    .hero-price-box {
+      display: inline-block;
+      background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,.4);
+      border-radius: 16px; padding: 20px 40px; margin-bottom: 36px;
+    }
+    .hero-price-box .price-label { font-size: .85rem; opacity: .85; margin-bottom: 4px; }
+    .hero-price-box .price-main { font-size: clamp(2rem, 6vw, 3.6rem); font-weight: 900; line-height: 1; }
+    .hero-price-box .price-main span { font-size: .45em; font-weight: 500; }
+    .hero-price-box .price-note { font-size: .78rem; opacity: .8; margin-top: 6px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .btn-primary { background: var(--accent); color: #fff; border: none; border-radius: 50px; padding: 16px 40px; font-size: 1.1rem; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform .2s, box-shadow .2s; box-shadow: 0 6px 20px rgba(255,107,0,.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,0,.5); }
+    .btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.7); border-radius: 50px; padding: 14px 36px; font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background .2s; }
+    .btn-secondary:hover { background: rgba(255,255,255,.15); }
+
+    /* scroll cue */
+    .scroll-cue { margin-top: 48px; opacity: .6; font-size: .8rem; }
+    .scroll-cue::after { content: "▼"; display: block; animation: bounce 1.5s infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ============ TRUST BAR ============ */
+    .trust-bar { background: var(--blue-deep); color: #fff; padding: 18px 24px; }
+    .trust-bar-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: center; align-items: center; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 500; }
+    .trust-item .icon { font-size: 1.3rem; }
+
+    /* ============ SECTION BASE ============ */
+    section { padding: 72px 24px; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: .8rem; font-weight: 700; letter-spacing: .15em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; }
+    .section-title { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; line-height: 1.3; margin-bottom: 16px; }
+    .section-title em { font-style: normal; color: var(--blue-mid); }
+    .section-desc { color: #555; font-size: .95rem; max-width: 640px; }
+
+    /* ============ REASONS ============ */
+    .reasons { background: var(--gray); }
+    .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+    .reason-card {
+      background: #fff; border-radius: 16px; padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      display: flex; flex-direction: column; gap: 12px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .reason-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
+    .reason-num { font-size: 3rem; font-weight: 900; color: var(--blue-light); line-height: 1; }
+    .reason-icon { font-size: 2.4rem; }
+    .reason-title { font-size: 1.05rem; font-weight: 700; color: var(--blue-deep); }
+    .reason-body { font-size: .88rem; color: #555; }
+
+    /* ============ WATER TYPES ============ */
+    .water-types { background: var(--white); }
+    .water-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 48px; }
+    .water-card {
+      border-radius: 20px; padding: 36px 28px; text-align: center;
+      transition: transform .25s;
+    }
+    .water-card:hover { transform: translateY(-4px); }
+    .water-card.hydrogen { background: linear-gradient(145deg, #e6f7ff, #cce8ff); border: 2px solid #99d6ff; }
+    .water-card.silica   { background: linear-gradient(145deg, #e8f5e9, #c8e6c9); border: 2px solid #a5d6a7; }
+    .water-card.vanadium { background: linear-gradient(145deg, #fce4ec, #f8bbd0); border: 2px solid #f48fb1; }
+    .water-card .wtype-icon { font-size: 3rem; margin-bottom: 12px; }
+    .water-card .wtype-name { font-size: 1.2rem; font-weight: 900; margin-bottom: 8px; color: var(--blue-deep); }
+    .water-card .wtype-desc { font-size: .88rem; color: #444; line-height: 1.7; }
+    .water-card .wtype-tag { display: inline-block; margin-top: 14px; font-size: .78rem; font-weight: 700; border-radius: 20px; padding: 4px 14px; }
+    .hydrogen .wtype-tag { background: var(--blue-mid); color: #fff; }
+    .silica .wtype-tag   { background: #2e7d32; color: #fff; }
+    .vanadium .wtype-tag { background: #c2185b; color: #fff; }
+    .water-select-note { text-align: center; margin-top: 28px; font-size: .88rem; color: #666; }
+    .water-select-note strong { color: var(--blue-deep); }
+
+    /* ============ PRODUCTS ============ */
+    .products { background: #0a1628; padding: 80px 24px; }
+    .products .section-label { color: rgba(255,255,255,.5); }
+    .products .section-title { color: #fff; }
+    .products .section-title em { color: #7ee8ff; }
+    .products .section-desc { color: rgba(255,255,255,.7); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 36px; margin-top: 52px;
+    }
+
+    .product-card {
+      border-radius: 24px; overflow: hidden;
+      display: flex; flex-direction: column;
+      position: relative;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+
+    .product-card.long-type { background: linear-gradient(160deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%); box-shadow: 0 12px 40px rgba(0,60,120,.4); border: 1px solid rgba(255,255,255,.08); }
+    .product-card.short-type { background: linear-gradient(160deg, #f0f6ff 0%, #e0eeff 60%, #c8e0ff 100%); box-shadow: 0 12px 40px rgba(0,80,180,.25); border: 1px solid rgba(100,160,255,.25); }
+
+    /* Top badge */
+    .product-ribbon {
+      position: absolute; top: 20px; left: 20px; z-index: 2;
+      background: var(--accent); color: #fff;
+      font-size: .7rem; font-weight: 900; letter-spacing: .1em;
+      border-radius: 20px; padding: 4px 14px;
+      box-shadow: 0 4px 12px rgba(255,107,0,.4);
+    }
+    .product-ribbon.new-badge { background: var(--teal); box-shadow: 0 4px 12px rgba(0,160,198,.4); }
+
+    /* Image showcase */
+    .product-showcase {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      height: 320px;
+      overflow: hidden;
+    }
+    .product-showcase::before {
+      content: "";
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 50px;
+      background: radial-gradient(ellipse, rgba(0,0,0,.22) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .long-type .product-showcase { background: radial-gradient(ellipse at 50% 40%, rgba(0,100,220,.15) 0%, transparent 70%); }
+    .short-type .product-showcase { background: radial-gradient(ellipse at 50% 40%, rgba(0,120,255,.1) 0%, transparent 70%); }
+
+    .product-showcase img {
+      position: relative; z-index: 1;
+      width: auto;
+      height: 100%;
+      max-height: 290px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.35));
+      transition: transform .4s ease;
+    }
+    .product-card:hover .product-showcase img { transform: scale(1.04) translateY(-6px); }
+
+    /* Glow ring behind product */
+    .product-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 200px; height: 200px; border-radius: 50%;
+      pointer-events: none;
+    }
+    .long-type .product-glow  { background: radial-gradient(circle, rgba(0,120,255,.18) 0%, transparent 70%); }
+    .short-type .product-glow { background: radial-gradient(circle, rgba(0,180,255,.15) 0%, transparent 70%); }
+
+    /* Info panel */
+    .product-info {
+      padding: 28px 32px 36px;
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .product-header-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .product-name-block {}
+    .product-type-label { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .long-type  .product-type-label { color: #7eb8ff; }
+    .short-type .product-type-label { color: var(--blue-mid); }
+    .product-name { font-size: 1.7rem; font-weight: 900; line-height: 1.1; }
+    .long-type  .product-name { color: #fff; }
+    .short-type .product-name { color: var(--blue-deep); }
+    .product-model { font-size: .8rem; margin-top: 4px; }
+    .long-type  .product-model { color: rgba(255,255,255,.5); }
+    .short-type .product-model { color: #888; }
+    .product-size-pill {
+      border-radius: 12px; padding: 8px 14px; text-align: center; flex-shrink: 0;
+      font-size: .75rem; font-weight: 700; line-height: 1.4;
+    }
+    .long-type  .product-size-pill { background: rgba(255,255,255,.08); color: #aad4ff; border: 1px solid rgba(255,255,255,.12); }
+    .short-type .product-size-pill { background: rgba(0,102,204,.08); color: var(--blue-mid); border: 1px solid rgba(0,102,204,.2); }
+
+    /* Feature chips */
+    .product-features { display: flex; flex-wrap: wrap; gap: 8px; }
+    .feat-chip { border-radius: 20px; padding: 5px 14px; font-size: .75rem; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    .long-type  .feat-chip { background: rgba(255,255,255,.07); color: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.1); }
+    .short-type .feat-chip { background: rgba(0,102,204,.07); color: var(--blue-deep); border: 1px solid rgba(0,102,204,.15); }
+
+    /* Spec grid */
+    .spec-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      border-radius: 12px; overflow: hidden;
+    }
+    .long-type  .spec-grid { background: rgba(255,255,255,.05); }
+    .short-type .spec-grid { background: rgba(0,102,204,.08); }
+    .spec-cell { padding: 10px 14px; }
+    .long-type  .spec-cell { background: rgba(255,255,255,.04); }
+    .short-type .spec-cell { background: rgba(255,255,255,.6); }
+    .spec-cell .s-label { font-size: .68rem; margin-bottom: 2px; }
+    .long-type  .spec-cell .s-label { color: rgba(255,255,255,.4); }
+    .short-type .spec-cell .s-label { color: #888; }
+    .spec-cell .s-val { font-size: .9rem; font-weight: 700; }
+    .long-type  .spec-cell .s-val { color: #fff; }
+    .short-type .spec-cell .s-val { color: var(--blue-deep); }
+
+    /* CTA inside card */
+    .product-card-cta {
+      display: block; text-align: center; text-decoration: none;
+      border-radius: 50px; padding: 14px; font-size: .95rem; font-weight: 700;
+      transition: opacity .2s, transform .2s;
+    }
+    .product-card-cta:hover { opacity: .85; transform: scale(1.02); }
+    .long-type  .product-card-cta { background: linear-gradient(90deg, #0066cc, #00a0c6); color: #fff; box-shadow: 0 6px 20px rgba(0,120,200,.4); }
+    .short-type .product-card-cta { background: linear-gradient(90deg, var(--blue-deep), #0066cc); color: #fff; box-shadow: 0 6px 20px rgba(0,60,120,.3); }
+
+    /* Divider */
+    .products-divider {
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 52px; gap: 16px; color: rgba(255,255,255,.35); font-size: .85rem;
+    }
+    .products-divider::before, .products-divider::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,.1); }
+
+    .spec-table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-top: 8px; }
+    .spec-table tr { border-bottom: 1px solid #eee; }
+    .spec-table tr:last-child { border-bottom: none; }
+    .spec-table th { padding: 9px 0; color: #888; font-weight: 500; width: 50%; text-align: left; }
+    .spec-table td { padding: 9px 0; font-weight: 700; color: var(--blue-deep); }
+    .product-tag { display: inline-block; margin-top: 16px; background: var(--blue-light); color: var(--blue-mid); border-radius: 20px; font-size: .78rem; font-weight: 700; padding: 4px 14px; }
+    .recommended-badge { background: var(--accent); color: #fff; font-size: .7rem; font-weight: 700; border-radius: 12px; padding: 2px 10px; margin-left: 10px; vertical-align: middle; }
+
+    /* ============ HOW IT WORKS ============ */
+    .how-it-works { background: linear-gradient(135deg, var(--blue-deep), #004488); color: #fff; }
+    .how-it-works .section-title em { color: #7ee8ff; }
+    .how-it-works .section-label { color: rgba(255,255,255,.6); }
+    .how-it-works .section-desc { color: rgba(255,255,255,.8); }
+    .steps { display: flex; flex-wrap: wrap; gap: 0; margin-top: 48px; justify-content: center; }
+    .step {
+      flex: 1; min-width: 180px; max-width: 220px;
+      text-align: center; padding: 24px 16px; position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: "→"; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      font-size: 1.5rem; opacity: .5;
+    }
+    .step-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 16px;
+    }
+    .step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: .82rem; opacity: .8; }
+
+    /* ============ PRICING ============ */
+    .pricing { background: #fff; }
+    .pricing-card {
+      max-width: 640px; margin: 48px auto 0;
+      border: 3px solid var(--blue-mid); border-radius: 24px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,102,204,.15);
+    }
+    .pricing-header { background: var(--blue-mid); color: #fff; padding: 28px; text-align: center; }
+    .pricing-header h3 { font-size: 1.4rem; font-weight: 900; }
+    .pricing-body { padding: 36px; }
+    .price-display { text-align: center; margin-bottom: 32px; }
+    .price-display .amount { font-size: 4rem; font-weight: 900; color: var(--blue-deep); line-height: 1; }
+    .price-display .amount span { font-size: 1.4rem; }
+    .price-display .with-tax { font-size: 1rem; color: var(--accent); font-weight: 700; margin-top: 6px; }
+    .price-display .price-caption { font-size: .82rem; color: #888; margin-top: 8px; }
+    .price-includes { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .price-includes li { display: flex; align-items: flex-start; gap: 10px; font-size: .9rem; }
+    .price-includes li::before { content: "✓"; background: var(--blue-mid); color: #fff; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .price-note { margin-top: 24px; padding-top: 20px; border-top: 1px dashed #ddd; font-size: .82rem; color: #888; line-height: 1.8; }
+    .pricing-cta { text-align: center; margin-top: 36px; }
+
+    /* ============ COMPARISON ============ */
+    .comparison { background: var(--gray); }
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 48px; font-size: .88rem; }
+    .comparison-table th, .comparison-table td { padding: 14px 18px; text-align: center; border-bottom: 1px solid #e0e0e0; }
+    .comparison-table thead th { background: var(--blue-deep); color: #fff; font-weight: 700; }
+    .comparison-table thead th:first-child { background: #555; border-radius: 0; }
+    .comparison-table tbody tr:hover { background: #f0f7ff; }
+    .comparison-table tbody td:first-child { font-weight: 700; text-align: left; color: #444; }
+    .comparison-table .check { color: #2e7d32; font-size: 1.2rem; font-weight: 700; }
+    .comparison-table .cross { color: #c62828; font-size: 1.1rem; }
+    .comparison-table .aquabank-col { background: #e8f4ff; font-weight: 700; color: var(--blue-deep); }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials { background: #fff; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+    .testimonial-card {
+      background: var(--gray); border-radius: 16px; padding: 28px;
+      position: relative;
+    }
+    .testimonial-card::before { content: "❝"; font-size: 3rem; color: var(--blue-light); position: absolute; top: 12px; right: 18px; line-height: 1; }
+    .testimonial-body { font-size: .9rem; line-height: 1.8; margin-bottom: 16px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--blue-mid); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; flex-shrink: 0; }
+    .author-info .name { font-weight: 700; font-size: .9rem; }
+    .author-info .detail { font-size: .78rem; color: #888; }
+    .stars { color: #f59e0b; font-size: .9rem; }
+
+    /* ============ FAQ ============ */
+    .faq { background: var(--gray); }
+    .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 12px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    details.faq-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    details.faq-item summary {
+      padding: 20px 24px; cursor: pointer; font-weight: 700; font-size: .95rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      list-style: none; color: var(--blue-deep);
+      transition: background .2s;
+    }
+    details.faq-item summary:hover { background: var(--blue-light); }
+    details.faq-item summary::after { content: "＋"; font-size: 1.2rem; flex-shrink: 0; transition: transform .3s; }
+    details.faq-item[open] summary::after { content: "－"; }
+    details.faq-item summary::before { content: "Q."; color: var(--blue-mid); margin-right: 8px; font-weight: 900; }
+    .faq-answer { padding: 0 24px 20px; font-size: .9rem; color: #555; line-height: 1.8; border-top: 1px solid #f0f0f0; padding-top: 16px; }
+    .faq-answer::before { content: "A."; color: var(--teal); font-weight: 900; margin-right: 8px; }
+
+    /* ============ CTA SECTION ============ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue-deep), var(--teal));
+      color: #fff; text-align: center; padding: 80px 24px;
+    }
+    .cta-section h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 16px; }
+    .cta-section p { opacity: .9; margin-bottom: 36px; font-size: 1rem; }
+    .cta-options { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 40px; }
+    .cta-tel-box {
+      background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.4);
+      border-radius: 16px; padding: 24px 36px; text-align: center;
+    }
+    .cta-tel-box small { font-size: .78rem; opacity: .8; }
+    .cta-tel-box a { font-size: 1.8rem; font-weight: 900; color: #fff; text-decoration: none; display: block; margin: 6px 0; }
+    .cta-tel-box .hours { font-size: .78rem; opacity: .75; }
+    .form-box {
+      background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.3);
+      border-radius: 16px; padding: 28px 36px; min-width: 280px;
+    }
+    .form-box h4 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .form-row { display: flex; flex-direction: column; gap: 10px; }
+    .form-row input { padding: 12px 16px; border-radius: 8px; border: none; font-size: .9rem; font-family: inherit; width: 100%; }
+    .form-row .submit-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity .2s; }
+    .form-row .submit-btn:hover { opacity: .85; }
+
+    /* ============ FOOTER ============ */
+    footer { background: #0a1628; color: rgba(255,255,255,.7); padding: 40px 24px 24px; font-size: .82rem; }
+    .footer-inner { max-width: 1000px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; }
+    .footer-brand h4 { color: #fff; font-size: 1rem; font-weight: 900; margin-bottom: 10px; }
+    .footer-brand p { line-height: 1.8; }
+    .footer-nav h5 { color: rgba(255,255,255,.9); font-size: .85rem; font-weight: 700; margin-bottom: 12px; }
+    .footer-nav ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .footer-nav ul li a { color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+    .footer-nav ul li a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: .78rem; }
+    .aquabank-official-note { font-size: .75rem; color: rgba(255,255,255,.4); }
+
+    /* ============ FLOATING CTA ============ */
+    .floating-cta {
+      position: fixed; bottom: 24px; right: 24px; z-index: 998;
+      background: var(--accent); color: #fff;
+      border-radius: 50px; padding: 14px 28px;
+      font-weight: 700; font-size: .9rem;
+      box-shadow: 0 8px 24px rgba(255,107,0,.4);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+      animation: pulse 2s infinite;
+      transition: transform .2s;
+    }
+    .floating-cta:hover { transform: scale(1.05); }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 8px 24px rgba(255,107,0,.4); }
+      50%      { box-shadow: 0 8px 36px rgba(255,107,0,.65); }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 600px) {
+      .site-header { flex-wrap: wrap; }
+      .header-tel { display: none; }
+      .step:not(:last-child)::after { display: none; }
+      .steps { flex-direction: column; align-items: center; }
+      .hero-price-box { padding: 16px 24px; }
+      .floating-cta { bottom: 16px; right: 16px; padding: 12px 20px; font-size: .85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <a class="logo" href="#top">
+    <img src="https://www.aqua-bank.co.jp/wordpress/wp-content/themes/storefront-child/images/waterserver/aquadore_logo.png"
+         alt="AQUA DORE ロゴ"
+         onerror="this.style.display='none'">
+    <div class="logo-text">
+      アクアバンク<br>
+      <span>公認代理店</span>
+    </div>
+  </a>
+  <div class="header-tel">
+    <small>お申込み・お問い合わせ</small>
+    <a href="tel:0120000000">0120-XXX-XXXX</a>
+    <small>平日 9:30〜18:00</small>
+  </div>
+  <a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener" class="header-cta">無料で申し込む</a>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-badge">🏆 業界最高水準の水素濃度 ｜ 公認代理店</div>
+    <h1>
+      水道水がそのまま<br>
+      <em>ミネラル水素水</em>に変わる<br>
+      次世代ウォーターサーバー
+    </h1>
+    <p class="hero-sub">
+      ボトル不要・定額飲み放題・年1回無料メンテナンス付き<br>
+      自分に合う水質を3種類から自由に選べます
+    </p>
+    <div class="hero-price-box">
+      <div class="price-label">月額定額（税抜）</div>
+      <div class="price-main">¥3,980<span>/月</span></div>
+      <div class="price-note">（税込 ¥4,378 / 月）｜ 追加料金なし・飲み放題</div>
+    </div>
+    <div class="hero-btns">
+      <a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener" class="btn-primary">✉ 今すぐ無料で申し込む</a>
+      <a href="#products" class="btn-secondary">📋 機種を比べる</a>
+    </div>
+    <div class="scroll-cue">詳しくはスクロール</div>
+  </div>
+</section>
+
+<!-- ========== TRUST BAR ========== -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="icon">🏅</span>水素濃度91%保持（6時間後）</div>
+    <div class="trust-item"><span class="icon">🔬</span>三菱マテリアルテクノ社認定水質</div>
+    <div class="trust-item"><span class="icon">💧</span>PFAS除去対応フィルター搭載</div>
+    <div class="trust-item"><span class="icon">🛠</span>年1回無料プロメンテナンス</div>
+    <div class="trust-item"><span class="icon">🌱</span>ペットボトルゴミ ゼロへ</div>
+  </div>
+</div>
+
+<!-- ========== REASONS ========== -->
+<section class="reasons">
+  <div class="section-inner">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">選ばれる<em>5つの理由</em></h2>
+    <p class="section-desc">従来の宅配ウォーターサーバーとは根本的に違います。水道水を直接使うから、コストも手間も大幅カット。</p>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-num">01</div>
+        <div class="reason-icon">💸</div>
+        <div class="reason-title">月額定額で飲み放題</div>
+        <div class="reason-body">水の量を気にせず使えます。料理・飲料・美容ケアまで、毎月¥3,980（税抜）の定額で使い放題。ボトル購入代ゼロ。</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">02</div>
+        <div class="reason-icon">🚰</div>
+        <div class="reason-title">ボトル注文・交換が不要</div>
+        <div class="reason-body">重いボトルの保管・注文・廃棄はもう不要。蛇口につなぐだけ。フィルターが自動的に水道水をきれいにします。</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">03</div>
+        <div class="reason-icon">🔬</div>
+        <div class="reason-title">3種類の水質から選べる</div>
+        <div class="reason-body">水素水・シリカ水・バナジウム水の中から、ライフスタイルや健康目標に合わせてお好みの水質をセレクト。</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">04</div>
+        <div class="reason-icon">🛠</div>
+        <div class="reason-title">年1回 無料プロメンテナンス</div>
+        <div class="reason-body">専任スタッフが全国無料でご自宅を訪問。フィルター交換・機器点検・水質確認を一括実施。追加費用ゼロ。</div>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">05</div>
+        <div class="reason-icon">🌿</div>
+        <div class="reason-title">環境に優しい選択</div>
+        <div class="reason-body">ペットボトルゴミを大幅削減。サステナブルな暮らしへの第一歩として、環境省推奨の水素水サーバーをご導入ください。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WATER TYPES ========== -->
+<section class="water-types">
+  <div class="section-inner">
+    <div class="section-label">Water Quality</div>
+    <h2 class="section-title">3つの水質から<em>ライフスタイルで選ぶ</em></h2>
+    <p class="section-desc">専用の「ドーレディスク」を交換するだけで、好みの水質に切り替え可能。自分に合った健康水を毎日飲み続けましょう。</p>
+    <div class="water-grid">
+      <div class="water-card hydrogen">
+        <div class="wtype-icon">⚡</div>
+        <div class="wtype-name">水素水</div>
+        <div class="wtype-desc">
+          活性酸素を除去するといわれる水素を豊富に含有。<br>
+          6時間後も91%の水素溶存率を維持する高い保持力が特徴です。
+        </div>
+        <div class="wtype-tag">アンチエイジング志向に</div>
+      </div>
+      <div class="water-card silica">
+        <div class="wtype-icon">💎</div>
+        <div class="wtype-name">シリカ水</div>
+        <div class="wtype-desc">
+          美肌・髪・爪のもとといわれるシリカ（ケイ素）を溶け込ませた水。<br>
+          美容意識の高い方や女性に人気の水質です。
+        </div>
+        <div class="wtype-tag">美容・美肌ケアに</div>
+      </div>
+      <div class="water-card vanadium">
+        <div class="wtype-icon">🌋</div>
+        <div class="wtype-name">バナジウム水</div>
+        <div class="wtype-desc">
+          希少なミネラル「バナジウム」を含む水。体内の糖代謝をサポートするとされ、健康管理に取り組む方に注目されています。
+        </div>
+        <div class="wtype-tag">健康管理・ダイエットに</div>
+      </div>
+    </div>
+    <p class="water-select-note">
+      ※ご契約後も水質の変更が可能です。<strong>最初はどれを選んでも大丈夫！</strong><br>
+      ご不明な点はお気軽にご相談ください。
+    </p>
+  </div>
+</section>
+
+<!-- ========== PRODUCTS ========== -->
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="section-label">Models</div>
+    <h2 class="section-title">2タイプから<em>お部屋に合わせて</em>選べる</h2>
+    <p class="section-desc">設置スペースや用途に合わせて、ロングタイプ・ショートタイプの2機種をご用意しています。どちらも月額¥3,980（税抜）の定額飲み放題です。</p>
+
+    <div class="products-grid">
+
+      <!-- ===== Long Type AB-3 ===== -->
+      <div class="product-card long-type">
+        <div class="product-ribbon new-badge">LONG TYPE</div>
+
+        <div class="product-showcase">
+          <div class="product-glow"></div>
+          <img src="img/AB-3.png" alt="アクアバンク ロングタイプ AB-3">
+        </div>
+
+        <div class="product-info">
+          <div class="product-header-row">
+            <div class="product-name-block">
+              <div class="product-type-label">Long Type</div>
+              <div class="product-name">ロングタイプ</div>
+              <div class="product-model">型番：AB-3</div>
+            </div>
+            <div class="product-size-pill">
+              全長<br><strong>139 cm</strong><br><span style="font-size:.65rem;font-weight:400;">（ふた開 160cm）</span>
+            </div>
+          </div>
+
+          <div class="product-features">
+            <span class="feat-chip">🏠 リビング向き</span>
+            <span class="feat-chip">🏢 オフィスに最適</span>
+            <span class="feat-chip">⚖️ 17 kg</span>
+            <span class="feat-chip">💧 冷温水対応</span>
+          </div>
+
+          <div class="spec-grid">
+            <div class="spec-cell"><div class="s-label">本体 幅</div><div class="s-val">27 cm</div></div>
+            <div class="spec-cell"><div class="s-label">本体 奥行</div><div class="s-val">32 cm</div></div>
+            <div class="spec-cell"><div class="s-label">本体 高さ</div><div class="s-val">97 cm</div></div>
+            <div class="spec-cell"><div class="s-label">タンク部分</div><div class="s-val">31×31×42 cm</div></div>
+          </div>
+
+          <a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener" class="product-card-cta">このモデルで申し込む →</a>
+        </div>
+      </div>
+
+      <!-- ===== Short Type AB-4s ===== -->
+      <div class="product-card short-type">
+        <div class="product-ribbon">人気 No.1</div>
+
+        <div class="product-showcase">
+          <div class="product-glow"></div>
+          <img src="img/AB-4s.png" alt="アクアバンク ショートタイプ AB-4s">
+        </div>
+
+        <div class="product-info">
+          <div class="product-header-row">
+            <div class="product-name-block">
+              <div class="product-type-label">Short Type</div>
+              <div class="product-name">ショートタイプ</div>
+              <div class="product-model">型番：AB-4s</div>
+            </div>
+            <div class="product-size-pill">
+              全長<br><strong>84 cm</strong><br><span style="font-size:.65rem;font-weight:400;">（ふた開 105cm）</span>
+            </div>
+          </div>
+
+          <div class="product-features">
+            <span class="feat-chip">🛋 省スペース</span>
+            <span class="feat-chip">💇 サロン・店舗に</span>
+            <span class="feat-chip">⚖️ 13 kg</span>
+            <span class="feat-chip">💧 冷温水対応</span>
+          </div>
+
+          <div class="spec-grid">
+            <div class="spec-cell"><div class="s-label">本体 幅</div><div class="s-val">27 cm</div></div>
+            <div class="spec-cell"><div class="s-label">本体 奥行</div><div class="s-val">42 cm</div></div>
+            <div class="spec-cell"><div class="s-label">本体 高さ</div><div class="s-val">43 cm</div></div>
+            <div class="spec-cell"><div class="s-label">タンク部分</div><div class="s-val">31×31×42 cm</div></div>
+          </div>
+
+          <a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener" class="product-card-cta">このモデルで申し込む →</a>
+        </div>
+      </div>
+
+    </div><!-- /products-grid -->
+
+    <div class="products-divider">どちらのモデルも月額 ¥3,980（税抜）・飲み放題・年1回無料メンテナンス付き</div>
+
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="how-it-works">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">水道水が<em>高機能ミネラル水</em>になるまで</h2>
+    <p class="section-desc">独自の多段フィルターが水道水を浄化し、選んだミネラルを添加。毎日おいしい水が使い放題になります。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-circle">🚰</div>
+        <h4>①水道水を供給</h4>
+        <p>ホースを接続するだけ。水道直結でいつでも補充ゼロ</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">⚗</div>
+        <h4>②高性能フィルターで浄化</h4>
+        <p>塩素・PFAS・不純物を除去。残留塩素除去率94.1%</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">💎</div>
+        <h4>③ドーレディスクでミネラル添加</h4>
+        <p>水素・シリカ・バナジウムからお好みの成分を付加</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">🌡</div>
+        <h4>④冷水・温水に調整</h4>
+        <p>チャイルドロック付き。冷水・温水をいつでも使えます</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">✨</div>
+        <h4>⑤完成！いつでも飲み放題</h4>
+        <p>定額で毎日おいしいミネラル水を好きなだけ使えます</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">シンプルな<em>定額プライス</em></h2>
+    <p class="section-desc">複雑な従量課金なし。毎月一定の費用だけで、すべてのサービスが含まれます。</p>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>月額定額プラン（飲み放題）</h3>
+      </div>
+      <div class="pricing-body">
+        <div class="price-display">
+          <div class="amount">¥3,980<span>/月</span></div>
+          <div class="with-tax">税込 ¥4,378 / 月</div>
+          <div class="price-caption">※年払い選択で5%割引あり</div>
+        </div>
+        <ul class="price-includes">
+          <li>ウォーターサーバー本体レンタル料（AB-3 または AB-4s）</li>
+          <li>フィルターカートリッジ代（年間約10,000Lまで対応）</li>
+          <li>ドーレディスク代（水質ミネラル付加）</li>
+          <li>年1回の無料プロメンテナンス・点検</li>
+          <li>24時間カスタマーサポート</li>
+          <li>水質変更・機種変更サポート</li>
+        </ul>
+        <div class="price-note">
+          ※電気代は別途ご負担いただきます（月額目安 約¥800〜¥1,000程度）<br>
+          ※初回設置の配送料は無料。プロ設置オプションは別途費用が発生します。<br>
+          ※解約は所定の手続きが必要です。詳細はお問い合わせください。
+        </div>
+        <div class="pricing-cta">
+          <a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener" class="btn-primary" style="font-size:1rem; padding:14px 36px;">今すぐ申し込む →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMPARISON ========== -->
+<section class="comparison">
+  <div class="section-inner">
+    <div class="section-label">Comparison</div>
+    <h2 class="section-title">従来型との<em>徹底比較</em></h2>
+    <p class="section-desc">宅配型ウォーターサーバーとの違いを一覧でご確認ください。</p>
+    <div style="overflow-x:auto; margin-top:0;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>アクアバンク<br>（水道直結型）</th>
+            <th>一般的な宅配<br>ウォーターサーバー</th>
+            <th>市販ペット<br>ボトル（2L×4本）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>月間コスト（目安）</td>
+            <td class="aquabank-col">約¥4,378〜</td>
+            <td>約¥5,000〜8,000</td>
+            <td>約¥3,000〜5,000</td>
+          </tr>
+          <tr>
+            <td>ボトル注文・交換</td>
+            <td class="aquabank-col"><span class="check">不要</span></td>
+            <td><span class="cross">毎月必要</span></td>
+            <td><span class="cross">毎週必要</span></td>
+          </tr>
+          <tr>
+            <td>ゴミ・廃棄物</td>
+            <td class="aquabank-col"><span class="check">ほぼゼロ</span></td>
+            <td><span class="cross">ボトル廃棄あり</span></td>
+            <td><span class="cross">ボトル大量廃棄</span></td>
+          </tr>
+          <tr>
+            <td>水の補充作業</td>
+            <td class="aquabank-col"><span class="check">完全自動</span></td>
+            <td><span class="cross">ボトル交換必要</span></td>
+            <td><span class="cross">購入・運搬が必要</span></td>
+          </tr>
+          <tr>
+            <td>水質のカスタマイズ</td>
+            <td class="aquabank-col"><span class="check">3種類から選択可</span></td>
+            <td><span class="cross">固定</span></td>
+            <td><span class="cross">固定</span></td>
+          </tr>
+          <tr>
+            <td>PFAS除去</td>
+            <td class="aquabank-col"><span class="check">対応</span></td>
+            <td>製品による</td>
+            <td><span class="cross">不明</span></td>
+          </tr>
+          <tr>
+            <td>メンテナンス</td>
+            <td class="aquabank-col"><span class="check">年1回無料</span></td>
+            <td>有料または自分で</td>
+            <td>なし</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="section-label">Voices</div>
+    <h2 class="section-title">ご利用者さまの<em>リアルな声</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-body">
+          「重いペットボトルを買いに行く手間が完全になくなりました。子どもが水を飲む量も増えて、水道水のにおいが苦手だった問題も一気に解決！」
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">👩</div>
+          <div class="author-info">
+            <div class="name">30代・女性</div>
+            <div class="detail">ご家族でご利用 / 東京都</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-body">
+          「美容サロンで導入しました。お客様へのドリンクサービスに使っていますが、見た目もスタイリッシュでサロンの雰囲気にぴったり。コストも抑えられています。」
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">💇</div>
+          <div class="author-info">
+            <div class="name">40代・男性</div>
+            <div class="detail">美容室オーナー / 大阪府</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★☆</div>
+        <p class="testimonial-body">
+          「水素水を試したかったのですが、ペットボトルだと高くて続かない。アクアバンクなら定額で飲み放題なので毎日使えます。料理に使う水もこれで全部まかなっています。」
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🧑</div>
+          <div class="author-info">
+            <div class="name">50代・男性</div>
+            <div class="detail">健康志向 / 愛知県</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title" style="text-align:center;">よくある<em>ご質問</em></h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>水道水をそのまま使うのは衛生的に大丈夫ですか？</summary>
+        <div class="faq-answer">
+          アクアバンクのフィルターは残留塩素を94.1%除去し、第三者機関（三菱マテリアルテクノ社）による水質検査を実施・認定済みです。PFAS（有機フッ素化合物）への対応フィルターも搭載しており、安全性は万全です。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>設置工事は必要ですか？難しいですか？</summary>
+        <div class="faq-answer">
+          基本的にご自身で設置いただけます。ご希望の方はヤマトホームコンビニエンスの有料設置オプションもご利用いただけます。設置には水道の蛇口への接続が必要ですが、専用ホースと説明書が同梱されており、工具不要で取り付け可能です。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>電気代はどのくらいかかりますか？</summary>
+        <div class="faq-answer">
+          サーバーの稼働に必要な電気代は月額およそ¥800〜¥1,000程度が目安です（使用環境により異なります）。月額レンタル料とは別にご負担いただきます。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>途中で水質（水素水・シリカ水・バナジウム水）を変えられますか？</summary>
+        <div class="faq-answer">
+          はい、変更可能です。専用のドーレディスクを交換するだけで、水質を切り替えることができます。変更についてはカスタマーサポートまでお問い合わせください。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>ロングタイプとショートタイプの違いは何ですか？</summary>
+        <div class="faq-answer">
+          主な違いは高さです。ロングタイプ（AB-3）は高さ97cm（全長139cm）で、一般的なウォーターサーバーと同様のサイズ感です。ショートタイプ（AB-4s）は高さ43cm（全長84cm）とコンパクトで、キッチンカウンターや棚の上に置けます。機能・水質・価格は同じです。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>解約はいつでもできますか？違約金はありますか？</summary>
+        <div class="faq-answer">
+          契約期間・解約条件については、ご契約時にご説明します。詳細はお問い合わせフォームまたはお電話でご確認ください。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>支払い方法は何が使えますか？</summary>
+        <div class="faq-answer">
+          クレジットカード払い・銀行口座振替に対応しています。新規クレジットカードでのお申し込みの場合、QUOカード¥5,000分のプレゼントキャンペーンを実施中です（期間限定）。
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA SECTION ========== -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <h2>今すぐ始めて、毎日の水を変えよう</h2>
+    <p>お電話・Webフォームどちらでもお申し込み・ご相談いただけます。</p>
+    <div class="cta-options">
+      <div class="cta-tel-box">
+        <small>お電話でのお申し込み・ご相談</small>
+        <a href="tel:0120000000">0120-XXX-XXXX</a>
+        <div class="hours">受付時間：平日 9:30〜18:00</div>
+      </div>
+      <div class="form-box">
+        <h4>📩 Webフォームで申し込む（無料）</h4>
+        <div class="form-row">
+          <input type="text" placeholder="お名前" aria-label="お名前">
+          <input type="tel" placeholder="電話番号" aria-label="電話番号">
+          <input type="email" placeholder="メールアドレス" aria-label="メールアドレス">
+          <button class="submit-btn" type="button">無料で申し込む →</button>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:.8rem; opacity:.65;">
+      ※個人情報は適切に管理し、お申し込み対応以外には使用しません。<br>
+      ※このページはアクアバンク公認代理店の販売告知ランディングページです。
+    </p>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>アクアバンク 公認代理店</h4>
+        <p>水道水から作るミネラル水素水サーバー「アクア・ドーレ」の公認代理店です。ご購入・ご相談はお気軽にどうぞ。</p>
+      </div>
+      <div class="footer-nav">
+        <h5>ご案内</h5>
+        <ul>
+          <li><a href="#top">トップページ</a></li>
+          <li><a href="#products">機種一覧</a></li>
+          <li><a href="#pricing">料金プラン</a></li>
+          <li><a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener">お申し込み</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h5>サポート</h5>
+        <ul>
+          <li><a href="#faq" onclick="document.querySelector('.faq').scrollIntoView()">よくある質問</a></li>
+          <li><a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 アクアバンク公認代理店. All rights reserved.</p>
+      <p class="aquabank-official-note">アクアバンク（AQUA BANK）はアクアバンク株式会社の登録商標です。</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== FLOATING CTA ========== -->
+<a href="https://entry.aqua-bank.co.jp/00222001" target="_blank" rel="noopener" class="floating-cta">✉ 今すぐ申し込む</a>
+
+</body>
+</html>
